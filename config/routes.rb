@@ -4,4 +4,9 @@ JustChatModule::Engine.routes.draw do
   #get "/examples" => "examples#index"
 end
 
-Discourse::Application.routes.draw { mount ::JustChatModule::Engine, at: "just-chat" }
+# Mount the engine as before
+Discourse::Application.routes.draw do
+  mount ::JustChatModule::Engine, at: "discourse-just-chat"
+  # Redirect root to /chat for all users
+  root to: redirect('/chat')
+end

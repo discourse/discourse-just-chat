@@ -1,0 +1,63 @@
+.sidebar__panel-switch-button[data-key="main"] {
+  display: none !important;
+}
+
+.chat-header-icon {
+  display: none !important;
+}
+
+.c-navbar__open-drawer-button[title="Close full-screen chat"] {
+  display: none !important;
+}
+
+.user-menu .drafts {
+  display: none !important;
+}
+
+// Hide the 'Show separate sidebar modes for forum and chat' user preference
+.control-group.chat-setting.controls-dropdown[data-setting-name="user_chat_separate_sidebar_mode"] {
+  display: none !important;
+}
+
+// Hide the 'Forum' link in the chat header on mobile view, only when in full-page chat
+.has-full-page-chat .c-header .back-to-forum {
+  display: none !important;
+}
+
+// Hide 'Summary' and 'Activity' links in the user menu/profile quick access
+li.summary,
+li.activity {
+  display: none !important;
+}
+
+// Hide the 'Profile' tab button for summary in the bottom tabs
+// #user-menu-button-profile[href*="/summary"] {
+//   display: none !important;
+// }
+
+// Hide 'Summary' and 'Activity' from user profile navigation tabs
+.user-nav__summary,
+.user-nav__activity {
+  display: none !important;
+}
+
+// Hide the 'Featured Topic' section in user preferences
+.control-group[data-setting-name="user-featured-topic"] {
+  display: none !important;
+}
+
+// Hide the 'Tracking' button/tab in user preferences navigation
+.user-nav__preferences-tracking {
+  display: none !important;
+}
+
+// Hide the tracking topics and categories/tags sections in preferences
+.user-preferences__tracking-topics-wrapper,
+.user-preferences__tracking-categories-tags-wrapper {
+  display: none !important;
+}
+
+// Hide the 'Navigation Menu' button/tab in user preferences navigation
+.user-nav__preferences-navigation-menu {
+  display: none !important;
+}
