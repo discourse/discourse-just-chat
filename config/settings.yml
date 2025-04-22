@@ -1,4 +1,28 @@
-plugins:
+just_chat:
   just_chat_enabled:
-    default: false
+    default: true
     client: true
+  discourse_narrative_bot_enabled:
+    default: false
+    hidden: true
+  chat_enabled:
+    default: true
+    hidden: true
+  login_required:
+    default: true
+    hidden: true
+  personal_message_enabled_groups:
+    default: "1|2"
+    hidden: true
+  desktop_category_page_style:
+    default: "categories_only"
+    hidden: true
+  mobile_category_page_style:
+    default: "categories_only"
+    hidden: true
+  enable_badges:
+    default: false
+    hidden: true
+  tagging_enabled:
+    default: false
+    hidden: true

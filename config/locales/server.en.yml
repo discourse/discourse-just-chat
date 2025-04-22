@@ -1,1 +1,3 @@
 en:
+  site_settings:
+    just_chat_enabled: "Hides everything that isn't chat"

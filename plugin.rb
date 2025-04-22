@@ -19,13 +19,6 @@ end
 require_relative "lib/just_chat_module/engine"
 
 after_initialize do
-  SiteSetting.discourse_narrative_bot_enabled = false
-  SiteSetting.chat_enabled = true
-  SiteSetting.login_required = true
-  SiteSetting.personal_message_enabled_groups = "1|2"
-  SiteSetting.desktop_category_page_style = "categories_only"
-  SiteSetting.mobile_category_page_style = "categories_only"
-  SiteSetting.enable_badges = false
   DiscourseEvent.on(:user_created) do |user|
     user_option = user.user_option
     if user_option
