@@ -1,3 +1,6 @@
 en:
-  js:
-    just_chat:
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          just_chat: "Just Chat"
