@@ -14,6 +14,21 @@
   display: none !important;
 }
 
+// Hide the search button
+.search-dropdown {
+  display: none !important;
+}
+
+// Hide the floating search input
+.floating-search-input-wrapper {
+  display: none !important;
+}
+
+// Hide the search menu panel
+.search-menu-panel {
+  display: none !important;
+}
+
 // Hide the 'Show separate sidebar modes for forum and chat' user preference
 .control-group.chat-setting.controls-dropdown[data-setting-name="user_chat_separate_sidebar_mode"] {
   display: none !important;
