@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # name: discourse-just-chat
-# about:  Hides everything that isn't chat
+# about: Hides everything that isn't chat
 # version: 0.0.1
 # authors: Blake Erickson
 # url: https://github.com/discourse/discourse-just-chat
