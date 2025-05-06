@@ -19,10 +19,10 @@ end
 require_relative "lib/just_chat_module/engine"
 
 after_initialize do
-  DiscourseEvent.on(:user_created) do |user|
-    user_option = user.user_option
-    if user_option
-      user_option.update_column(:chat_separate_sidebar_mode, UserOption.chat_separate_sidebar_modes[:always])
-    end
+  on(:user_created) do |user|
+    user.user_option&.update_column(
+      :chat_separate_sidebar_mode,
+      UserOption.chat_separate_sidebar_modes[:always],
+    )
   end
 end

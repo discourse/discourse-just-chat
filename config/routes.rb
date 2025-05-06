@@ -8,5 +8,5 @@ end
 Discourse::Application.routes.draw do
   mount ::JustChatModule::Engine, at: "discourse-just-chat"
   # Redirect root to /chat for all users
-  root to: redirect('/chat')
+  root to: redirect("/chat")
 end

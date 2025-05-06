@@ -1,5 +1,4 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { getOwner } from "@ember/application";
 
 export default {
   name: "just-chat-home-logo-href",
@@ -22,7 +21,7 @@ export default {
           } else if (this._super) {
             return this._super(...arguments);
           }
-        }
+        },
       });
 
       function redirectToChatAndSidebar(router) {
@@ -35,14 +34,14 @@ export default {
       api.modifyClass("route:user-activity-drafts", {
         beforeModel() {
           redirectToChatAndSidebar(this.router);
-        }
+        },
       });
 
       // Block user activity route in Ember
       api.modifyClass("route:user-activity", {
         beforeModel() {
           redirectToChatAndSidebar(this.router);
-        }
+        },
       });
 
       // Force chat sidebar on preferences/account route
@@ -77,14 +76,7 @@ export default {
       });
 
       // Redirect all common list/user activity routes to /chat
-      [
-        "latest",
-        "new",
-        "top",
-        "hot",
-        "unread",
-        "unseen",
-      ].forEach((filter) => {
+      ["latest", "new", "top", "hot", "unread", "unseen"].forEach((filter) => {
         api.modifyClass(`route:discovery/${filter}`, {
           beforeModel(transition) {
             if (
@@ -96,39 +88,49 @@ export default {
             } else if (this._super) {
               return this._super(...arguments);
             }
-          }
+          },
         });
       });
 
       // Intercept category link clicks
       api.onPageChange(() => {
         // Handle category list links
-        document.querySelectorAll('.category-title-link').forEach(link => {
-          link.addEventListener('click', (e) => {
+        document.querySelectorAll(".category-title-link").forEach((link) => {
+          link.addEventListener("click", (e) => {
             e.preventDefault();
-            const href = link.getAttribute('href');
+            const href = link.getAttribute("href");
             if (href) {
               const router = api.container.lookup("service:router");
               // Extract the category path from the href, ignoring IDs
               const match = href.match(/\/c\/([^\/]+(?:\/[^\/]+)?)(?:\/\d+)?$/);
               if (match) {
                 // Remove any trailing ID from the category path
-                const categoryPath = match[1].replace(/\/\d+$/, '');
+                const categoryPath = match[1].replace(/\/\d+$/, "");
                 // Check if it's a subcategory
-                const parts = categoryPath.split('/');
+                const parts = categoryPath.split("/");
                 if (parts.length > 1) {
                   // It's a subcategory, use original parent category
                   const targetUrl = `/c/${parts[0]}/${parts[1]}/edit/`;
-                  const sidebarState = api.container.lookup("service:sidebar-state");
-                  if (sidebarState && typeof sidebarState.setPanel === "function") {
+                  const sidebarState = api.container.lookup(
+                    "service:sidebar-state"
+                  );
+                  if (
+                    sidebarState &&
+                    typeof sidebarState.setPanel === "function"
+                  ) {
                     sidebarState.setPanel("chat");
                   }
                   router.replaceWith(targetUrl);
                 } else {
                   // It's a parent category
                   const targetUrl = `/c/${categoryPath}/edit/`;
-                  const sidebarState = api.container.lookup("service:sidebar-state");
-                  if (sidebarState && typeof sidebarState.setPanel === "function") {
+                  const sidebarState = api.container.lookup(
+                    "service:sidebar-state"
+                  );
+                  if (
+                    sidebarState &&
+                    typeof sidebarState.setPanel === "function"
+                  ) {
                     sidebarState.setPanel("chat");
                   }
                   router.replaceWith(targetUrl);
@@ -139,41 +141,55 @@ export default {
         });
 
         // Handle chat interface category links
-        document.querySelectorAll('.badge-category__wrapper').forEach(link => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const href = link.getAttribute('href');
-            if (href) {
-              const router = api.container.lookup("service:router");
-              // Extract the category path from the href, ignoring IDs
-              const match = href.match(/\/c\/([^\/]+(?:\/[^\/]+)?)(?:\/\d+)?$/);
-              if (match) {
-                // Remove any trailing ID from the category path
-                const categoryPath = match[1].replace(/\/\d+$/, '');
-                // Check if it's a subcategory
-                const parts = categoryPath.split('/');
-                if (parts.length > 1) {
-                  // It's a subcategory, use original parent category
-                  const targetUrl = `/c/${parts[0]}/${parts[1]}/edit/`;
-                  const sidebarState = api.container.lookup("service:sidebar-state");
-                  if (sidebarState && typeof sidebarState.setPanel === "function") {
-                    sidebarState.setPanel("chat");
+        document
+          .querySelectorAll(".badge-category__wrapper")
+          .forEach((link) => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              const href = link.getAttribute("href");
+              if (href) {
+                const router = api.container.lookup("service:router");
+                // Extract the category path from the href, ignoring IDs
+                const match = href.match(
+                  /\/c\/([^\/]+(?:\/[^\/]+)?)(?:\/\d+)?$/
+                );
+                if (match) {
+                  // Remove any trailing ID from the category path
+                  const categoryPath = match[1].replace(/\/\d+$/, "");
+                  // Check if it's a subcategory
+                  const parts = categoryPath.split("/");
+                  if (parts.length > 1) {
+                    // It's a subcategory, use original parent category
+                    const targetUrl = `/c/${parts[0]}/${parts[1]}/edit/`;
+                    const sidebarState = api.container.lookup(
+                      "service:sidebar-state"
+                    );
+                    if (
+                      sidebarState &&
+                      typeof sidebarState.setPanel === "function"
+                    ) {
+                      sidebarState.setPanel("chat");
+                    }
+                    router.replaceWith(targetUrl);
+                  } else {
+                    // It's a parent category
+                    const targetUrl = `/c/${categoryPath}/edit/`;
+                    const sidebarState = api.container.lookup(
+                      "service:sidebar-state"
+                    );
+                    if (
+                      sidebarState &&
+                      typeof sidebarState.setPanel === "function"
+                    ) {
+                      sidebarState.setPanel("chat");
+                    }
+                    router.replaceWith(targetUrl);
                   }
-                  router.replaceWith(targetUrl);
-                } else {
-                  // It's a parent category
-                  const targetUrl = `/c/${categoryPath}/edit/`;
-                  const sidebarState = api.container.lookup("service:sidebar-state");
-                  if (sidebarState && typeof sidebarState.setPanel === "function") {
-                    sidebarState.setPanel("chat");
-                  }
-                  router.replaceWith(targetUrl);
                 }
               }
-            }
+            });
           });
-        });
       });
     });
-  }
+  },
 };
