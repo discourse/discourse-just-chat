@@ -4,7 +4,7 @@ export default {
   name: "just-chat-home-logo-href",
 
   initialize() {
-    withPluginApi("1.2.0", (api) => {
+    withPluginApi((api) => {
       api.modifyClass("component:header/home-logo", {
         href: "/chat",
       });
